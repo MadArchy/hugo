@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberElectric - Servicios Eléctricos y Tecnológicos</title>
+    <link rel="icon" href="logohugo2.svg" type="image/svg+xml">
+    <meta name="description" content="Especialistas en electricidad, seguridad electrónica, telecomunicaciones y acabados arquitectónicos de alta precisión">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles/main.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen bg-black text-white/90 font-sans bg-gradient-to-b from-[#0a0e1a] to-black">
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-3 cursor-pointer group" onclick="scrollToTop()">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-blue-600 rounded-lg blur-lg opacity-50 group-hover:opacity-80 transition-opacity logo-glow"></div>
+                        <div >
+                            <!-- Logo de la empresa -->
+                            <img src="logohugo2.svg" alt="Logo de CyberElectric" class="w-12 h-12
+                            " style="filter: drop-shadow(0 0 10px rgba(0,255,136,0.5))">
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-white text-2xl">CyberElectric</span>
+                        <div class="h-0.5 w-0 group-hover:w-full bg-gradient-to-r from-blue-600 to-green-400 transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-8">
+                    <button onclick="scrollToSection('services')" class="nav-link relative text-gray-300 hover:text-white transition-colors duration-300 group">
+                        Servicios
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-green-400 group-hover:w-full transition-all duration-300"></span>
+                    </button>
+                    <button onclick="scrollToSection('contact')" class="nav-link relative text-gray-300 hover:text-white transition-colors duration-300 group">
+                        Contacto
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-green-400 group-hover:w-full transition-all duration-300"></span>
+                    </button>
+                    <button onclick="scrollToSection('contact')" class="btn-primary relative group bg-gradient-to-r from-blue-600 to-green-400 text-white px-6 py-2.5 rounded-lg hover:shadow-lg hover:shadow-blue-600/50 transition-all">
+                        Cotizar Proyecto
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden relative p-2 text-white hover:bg-white/10 rounded-lg transition-colors">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-xl border-t border-white/10">
+            <div class="px-4 py-6 space-y-4">
+                <button onclick="scrollToSection('services'); closeMobileMenu()" class="block w-full text-left text-gray-300 hover:text-white hover:bg-white/5 px-4 py-3 rounded-lg transition-all group">
+                    <span class="flex items-center gap-2">
+                        <span class="w-0 h-0.5 bg-gradient-to-r from-blue-600 to-green-400 group-hover:w-4 transition-all"></span>
+                        Servicios
+                    </span>
+                </button>
+                <button onclick="scrollToSection('contact'); closeMobileMenu()" class="block w-full text-left text-gray-300 hover:text-white hover:bg-white/5 px-4 py-3 rounded-lg transition-all group">
+                    <span class="flex items-center gap-2">
+                        <span class="w-0 h-0.5 bg-gradient-to-r from-blue-600 to-green-400 group-hover:w-4 transition-all"></span>
+                        Contacto
+                    </span>
+                </button>
+                <button onclick="scrollToSection('contact'); closeMobileMenu()" class="w-full bg-gradient-to-r from-blue-600 to-green-400 text-white px-6 py-3 rounded-lg">
+                    Cotizar Proyecto
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0a0e1a] via-[#1a1f2e] to-[#0a0e1a]">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90 z-10"></div>
+            <img src="https://images.unsplash.com/photo-1744113511604-235e7010981f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVjdHJpY2FsJTIwd29yayUyMG1vZGVybnxlbnwxfHx8fDE3NjI1MjY4OTd8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Electrical work" class="w-full h-full object-cover hero-bg-image">
+        </div>
+
+        <!-- Electric Particles Canvas -->
+        <canvas id="particles-canvas" class="absolute inset-0 z-10"></canvas>
+
+        <!-- Animated Grid -->
+        <div class="absolute inset-0 z-10 opacity-20">
+            <div class="absolute inset-0 animated-grid"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20 hero-content">
+            <!-- Logo Badge -->
+            <div class="flex justify-center mb-8">
+                <div class="relative logo-container">
+                    <div class="absolute inset-0 bg-blue-600 rounded-2xl blur-2xl logo-pulse"></div>
+                    <div class="relative bg-white/5 backdrop-blur-md p-6 rounded-2xl border-2 border-white/20">
+                        <img src="logohugo2.svg"  alt="CyberElectric Logo" class="w-25 h-25 object-contain" style="filter: drop-shadow(0 0 20px rgba(0,255,136,0.5))">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Title -->
+            <div class="fade-in-up" style="animation-delay: 0.3s">
+                <h1 class="text-white mb-4 text-5xl md:text-6xl lg:text-7xl font-bold">
+                    CyberElectric
+                </h1>
+                <div class="h-1 w-32 mx-auto bg-gradient-to-r from-blue-600 via-green-400 to-yellow-500 rounded-full mb-8"></div>
+            </div>
+
+            <!-- Slogan -->
+            <p class="text-3xl sm:text-4xl md:text-5xl mb-6 max-w-4xl mx-auto leading-tight fade-in-up" style="animation-delay: 0.5s">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-green-400 to-blue-600">
+                    Transformamos energía y diseño
+                </span>
+                <br>
+                <span class="text-white">
+                    en resultados perfectos
+                </span>
+            </p>
+
+            <!-- Description -->
+            <p class="text-gray-300 text-lg sm:text-xl mb-10 max-w-2xl mx-auto fade-in-up" style="animation-delay: 0.7s">
+                Especialistas en electricidad, seguridad electrónica, telecomunicaciones y acabados arquitectónicos de alta precisión
+            </p>
+
+            <!-- Feature Pills -->
+            <div class="flex flex-wrap justify-center gap-4 mb-10 fade-in-up" style="animation-delay: 0.9s">
+                <div class="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 hover:bg-white/20 transition-all feature-pill">
+                    <i data-lucide="check-circle-2" class="w-5 h-5" style="color: #00ff88"></i>
+                    <span class="text-white text-sm">Instalaciones Certificadas</span>
+                </div>
+                <div class="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 hover:bg-white/20 transition-all feature-pill">
+                    <i data-lucide="shield" class="w-5 h-5" style="color: #007bff"></i>
+                    <span class="text-white text-sm">Garantía Total</span>
+                </div>
+                <div class="flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 hover:bg-white/20 transition-all feature-pill">
+                    <i data-lucide="award" class="w-5 h-5" style="color: #ffc107"></i>
+                    <span class="text-white text-sm">10+ Años Experiencia</span>
+                </div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center fade-in-up" style="animation-delay: 1.1s">
+                <button onclick="scrollToSection('contact')" class="btn-cta relative group bg-gradient-to-r from-blue-600 to-green-400 text-white text-lg px-8 py-4 rounded-lg hover:shadow-2xl hover:shadow-blue-600/50 transition-all overflow-hidden">
+                    <span class="relative z-10 flex items-center gap-2">
+                        Contáctanos Ahora
+                        <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-2 transition-transform"></i>
+                    </span>
+                </button>
+                <button onclick="scrollToSection('services')" class="bg-transparent border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/60 transition-all text-lg px-8 py-4 rounded-lg backdrop-blur-sm">
+                    Ver Servicios
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="relative py-20 bg-gradient-to-b from-[#0a0e1a] to-black overflow-hidden">
+        <!-- Background Effects -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-600 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-green-400 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl text-white mb-4 font-bold">
+                    Nuestros Servicios
+                </h2>
+                <div class="h-1 w-24 mx-auto bg-gradient-to-r from-blue-600 to-green-400 rounded-full mb-6"></div>
+                <p class="text-gray-400 text-xl max-w-2xl mx-auto">
+                    Soluciones integrales con tecnología de punta y profesionales certificados
+                </p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Service Card 1 -->
+                <div class="service-card group relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 hover:bg-white/10 hover:border-white/30 transition-all overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="p-4 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl">
+                                <i data-lucide="paintbrush" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <h3 class="text-2xl text-white font-bold">Acabados y Construcción</h3>
+                        </div>
+                        <p class="text-gray-300 mb-6">Transformamos espacios con acabados de primera calidad</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3 text-gray-400">
+                                <i data-lucide="check" class="w-5 h-5 text-yellow-500"></i>
+                                <span>Pintura interior y exterior profesional</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-400">
+                                <i data-lucide="check" class="w-5 h-5 text-yellow-500"></i>
+                                <span>Enchapes de alta precisión</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-400">
+                                <i data-lucide="check" class="w-5 h-5 text-yellow-500"></i>
+                                <span>Instalación de Drywall, PVC y WPC</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-400">
+                                <i data-lucide="check" class="w-5 h-5 text-yellow-500"></i>
+                                <span>Texturas decorativas</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="service-card group relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 hover:bg-white/10 hover:border-white/30 transition-all overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-blue-800/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="p-4 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl">
+                                <i data-lucide="zap" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <h3 class="text-2xl text-white font-bold">Electricidad</h3>
+                        </div>
+                        <p class="text-gray-300 mb-6">Instalaciones eléctricas certificadas y seguras</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3 text-gray-400">
+                                <i data-lucide="check" class="w-5 h-5 text-blue-500"></i>
+                                <span>Luces decorativas y LED inteligente</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-400">
+                                <i data-lucide="check" class="w-5 h-5 text-blue-500"></i>
+                                <span>Circuitos residenciales y comerciales</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-400">
+                                <i data-lucide="check" class="w-5 h-5 text-blue-500"></i>
+                                <span>Alumbrado público</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-400">
+                                <i data-lucide="check" class="w-5 h-5 text-blue-500"></i>
+                                <span>Tableros de distribución</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="service-card group relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 hover:bg-white/10 hover:border-white/30 transition-all overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-green-400/10 to-green-600/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="p-4 bg-gradient-to-br from-green-400 to-green-600 rounded-xl">
+                                <i data-lucide="shield" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <h3 class="text-2xl text-white font-bold">Seguridad Electrónica</h3>
+                        </div>
+                        <p class="text-gray-300 mb-6">Protección total con tecnología de punta</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3 text-gray-400">
+                                <i data-lucide="check" class="w-5 h-5 text-green-400"></i>
+                                <span>Cámaras Hikvision, Dahua, Hilook</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-400">
+                                <i data-lucide="check" class="w-5 h-5 text-green-400"></i>
+                                <span>Cercas eléctricas perimetrales</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-400">
+                                <i data-lucide="check" class="w-5 h-5 text-green-400"></i>
+                                <span>Sistemas de alarma DSC e Interbal</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-400">
+                                <i data-lucide="check" class="w-5 h-5 text-green-400"></i>
+                                <span>Control de acceso biométrico</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="service-card group relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 hover:bg-white/10 hover:border-white/30 transition-all overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-600/10 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="p-4 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl">
+                                <i data-lucide="network" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <h3 class="text-2xl text-white font-bold">Redes y Telecomunicaciones</h3>
+                        </div>
+                        <p class="text-gray-300 mb-6">Conectividad empresarial de alto rendimiento</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3 text-gray-400">
+                                <i data-lucide="check" class="w-5 h-5 text-purple-500"></i>
+                                <span>Cableado estructurado certificado</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-400">
+                                <i data-lucide="check" class="w-5 h-5 text-purple-500"></i>
+                                <span>Fibra óptica y redes empresariales</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-400">
+                                <i data-lucide="check" class="w-5 h-5 text-purple-500"></i>
+                                <span>VoIP y telefonía IP</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-400">
+                                <i data-lucide="check" class="w-5 h-5 text-purple-500"></i>
+                                <span>Infraestructura de red completa</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="relative py-20 bg-black overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-600 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl text-white mb-4 font-bold">
+                    Contáctanos
+                </h2>
+                <div class="h-1 w-24 mx-auto bg-gradient-to-r from-blue-600 to-green-400 rounded-full mb-6"></div>
+                <p class="text-gray-400 text-xl">
+                    Estamos listos para hacer realidad tu proyecto
+                </p>
+            </div>
+
+            <!-- Contact Info Grid -->
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <a href="tel:+573001234567" class="group flex flex-col items-center gap-3 bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-6 hover:bg-white/10 hover:border-white/30 transition-all">
+                    <div class="p-4 bg-blue-600/20 rounded-lg group-hover:bg-blue-600/30 transition-colors">
+                        <i data-lucide="phone" class="w-6 h-6 text-blue-500"></i>
+                    </div>
+                    <span class="text-white font-medium">Teléfono</span>
+                    <span class="text-gray-400 text-sm">+57 3503709630</span>
+                </a>
+
+                <a href="mailto:info@cyberelectric.com" class="group flex flex-col items-center gap-3 bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-6 hover:bg-white/10 hover:border-white/30 transition-all">
+                    <div class="p-4 bg-green-400/20 rounded-lg group-hover:bg-green-400/30 transition-colors">
+                        <i data-lucide="mail" class="w-6 h-6 text-green-400"></i>
+                    </div>
+                    <span class="text-white font-medium">Email</span>
+                    <span class="text-gray-400 text-sm">ciberelectric476@gmail.com</span>
+                </a>
+
+                <div class="flex flex-col items-center gap-3 bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-6">
+                    <div class="p-4 bg-yellow-500/20 rounded-lg">
+                        <i data-lucide="map-pin" class="w-6 h-6 text-yellow-500"></i>
+                    </div>
+                    <span class="text-white font-medium">Ubicación</span>
+                    <span class="text-gray-400 text-sm">Cúcuta, Norte de Santander, Colombia</span>
+                </div>
+            </div>
+
+            <!-- WhatsApp CTA -->
+            <div class="text-center">
+                <a href="https://wa.me/573503709630" target="_blank" class="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-xl hover:shadow-2xl hover:shadow-green-500/50 transition-all text-lg font-medium">
+                    <i data-lucide="message-circle" class="w-6 h-6"></i>
+                    <span>Chatea con nosotros en WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative bg-gradient-to-b from-black to-[#0a0e1a] border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Copyright -->
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-400 text-sm text-center md:text-left">
+                    © 2025 CyberElectric. Todos los derechos reservados.
+                </p>
+                <div class="flex items-center gap-2 text-gray-400 text-sm">
+                    <span>Hecho con</span>
+                    <i data-lucide="heart" class="w-4 h-4 text-red-500"></i>
+                    <span>en Colombia</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll to Top Button -->
+        <button id="scroll-top-btn" class="fixed bottom-8 right-8 bg-gradient-to-r from-blue-600 to-green-400 text-white p-4 rounded-full shadow-2xl hover:shadow-blue-600/50 transition-all opacity-0 pointer-events-none" onclick="scrollToTop()">
+            <i data-lucide="arrow-up" class="w-6 h-6"></i>
+        </button>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/573503709630" target="_blank" class="floating-whatsapp fixed bottom-8 left-8 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all z-50 group">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+        <span class="absolute -top-2 -right-2 w-4 h-4 bg-red-500 rounded-full animate-ping"></span>
+        <span class="absolute -top-2 -right-2 w-4 h-4 bg-red-500 rounded-full"></span>
+    </a>
+
+    <!-- Scripts -->
+    <script src="main.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
